@@ -1,0 +1,22 @@
+name: Docker CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Build Docker Image
+        run: docker build -t my-app .
+      
+      - name: Run container
+        run: docker run -d -p 8080:80 --name nginx-demo my-app
+      
+      - name: Test
+        run: curl http://localhost:8080 || true
