@@ -15,6 +15,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t my-app .
       
+      
       - name: Run container
         run: docker run -d -p 8080:80 --name nginx-demo my-app
       
